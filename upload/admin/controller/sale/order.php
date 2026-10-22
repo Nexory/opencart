@@ -1024,7 +1024,7 @@ class Order extends \Opencart\System\Engine\Controller {
 			if ($this->config->get('total_' . $extension['code'] . '_status')) {
 				$output = $this->load->controller('extension/' . $extension['extension'] . '/api/' . $extension['code']);
 
-				if (!$output instanceof \Exception) {
+				if ($output && !$output instanceof \Exception) {
 					$data['extensions'][] = $output;
 				}
 			}
@@ -1079,7 +1079,7 @@ class Order extends \Opencart\System\Engine\Controller {
 			if ($extension_info && $this->user->hasPermission('access', 'extension/' . $extension_info['extension'] . '/payment/' . $extension_info['code'])) {
 				$output = $this->load->controller('extension/' . $extension_info['extension'] . '/payment/' . $extension_info['code'] . '.order');
 
-				if (!$output instanceof \Exception) {
+				if ($output && !$output instanceof \Exception) {
 					$this->load->language('extension/' . $extension_info['extension'] . '/payment/' . $extension_info['code'], 'extension');
 
 					$data['tabs'][] = [
@@ -1102,7 +1102,7 @@ class Order extends \Opencart\System\Engine\Controller {
 
 				$output = $this->load->controller('extension/' . $extension['extension'] . '/fraud/' . $extension['code'] . '.order');
 
-				if (!$output instanceof \Exception) {
+				if ($output && !$output instanceof \Exception) {
 					$data['tabs'][] = [
 						'code'    => $extension['extension'],
 						'title'   => $this->language->get('extension_heading_title'),
@@ -1564,7 +1564,7 @@ class Order extends \Opencart\System\Engine\Controller {
 					'shipping_address' => $shipping_address,
 					'shipping_method'  => ($order_info['shipping_method'] ? $order_info['shipping_method']['name'] : ''),
 					'payment_address'  => $payment_address,
-					'payment_method'   => $order_info['payment_method']['name'],
+					'payment_method'   => ($order_info['payment_method'] ? $order_info['payment_method']['name'] : ''),
 					'product'          => $product_data,
 					'total'            => $total_data,
 					'comment'          => nl2br($order_info['comment'])

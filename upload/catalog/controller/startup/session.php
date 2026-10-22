@@ -18,7 +18,7 @@ class Session extends \Opencart\System\Engine\Controller {
 		$this->registry->set('session', $session);
 
 		// API
-		if (isset($this->request->get['route']) && substr((string)$this->request->get['route'], 0, 4) == 'api/' && isset($this->request->get['api_token'])) {
+		if (isset($this->request->get['route']) && substr(strtolower((string)$this->request->get['route']), 0, 4) == 'api/' && isset($this->request->get['api_token'])) {
 			$this->load->model('setting/api');
 
 			$this->model_setting_api->cleanSessions();
@@ -63,12 +63,10 @@ class Session extends \Opencart\System\Engine\Controller {
 		$option = [
 			'expires'  => time() + (int)$this->config->get('config_session_expire'),
 			'path'     => $this->config->get('session_path'),
-			'secure'   => !empty($this->request->server['HTTPS']),
+			'secure'   => $this->request->server['HTTPS'],
 			'httponly' => true,
-			'samesite' => $this->config->get('session_samesite') ?: 'Lax'
+			'samesite' => $this->config->get('session_samesite')
 		];
-
-		$this->response->addHeader('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
 
 		setcookie($this->config->get('session_name'), $session->getId(), $option);
 	}

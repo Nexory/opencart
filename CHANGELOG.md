@@ -1,6 +1,6 @@
 # OpenCart change log
 
-## [v4.1.0.4]
+## [v4.1.0.4] (Unreleased: 29.07.2026)
 
 #### Changes
 
@@ -134,6 +134,52 @@
 * Changed: Change product rating field type to float in https://github.com/opencart/opencart/pull/15513
 * Fixed: Coupon category restriction not enforced in https://github.com/opencart/opencart/pull/15530
 * Fixed: Customer-facing 2FA email contains admin-oriented text in https://github.com/opencart/opencart/pull/15533
+* Fixed: reject traversal zip entries in marketplace installer in https://github.com/opencart/opencart/pull/15536
+* Fixed: Add product to cart in https://github.com/opencart/opencart/pull/15538
+* Changed: Improve admin performance with order table index in https://github.com/opencart/opencart/pull/15537
+* Fixed: Fix filter group sorting in admin in https://github.com/opencart/opencart/pull/15539
+* Changed: Use hash_equals() for API signature validation in https://github.com/opencart/opencart/pull/15541
+* Fixed: Fix library OCMOD in https://github.com/opencart/opencart/pull/15543
+* Fixed: Missing language texts in https://github.com/opencart/opencart/pull/15546
+* Fixed: Fix filter group sorting in admin in https://github.com/opencart/opencart/pull/15539
+* Changed: Help prevent long-running cron jobs from causing misses in https://github.com/opencart/opencart/pull/15548
+* Changed: Remove redundant language text in https://github.com/opencart/opencart/pull/15555
+* Fixed: Fix Admin Panel Product Option Value Weight Display Bug in https://github.com/opencart/opencart/pull/15556
+* Fixed: Fix email validation logic in https://github.com/opencart/opencart/pull/15554
+* Fixed: Add missing language texts in https://github.com/opencart/opencart/pull/15560
+* Fixed: Help prevent long-running cron jobs from causing misses in https://github.com/opencart/opencart/pull/15548
+* Changed: Use strict comparison for captcha and authorize code checks  in https://github.com/opencart/opencart/pull/15565
+* Changed: Only show the order fraud info tab if it's not empty in https://github.com/opencart/opencart/pull/15563
+* Changed: Update of upgrade scripts in https://github.com/opencart/opencart/pull/15566
+* Changed: Adjust cache-control headers in https://github.com/opencart/opencart/pull/15569
+* Fixed: Upgrade updates in https://github.com/opencart/opencart/pull/15570
+* Fixed: validate password when adding a new user in https://github.com/opencart/opencart/pull/15571
+* Fixed: Fix admin redirect and use of config_url in https://github.com/opencart/opencart/pull/15575
+* Fixed: Check modify permission in installer upload in https://github.com/opencart/opencart/pull/15578
+* Fixed: Only show the order total and payment info tabs if they're not empty in https://github.com/opencart/opencart/pull/15582
+* Fixed: Security Storage Move in https://github.com/opencart/opencart/pull/15584
+* Fixed: Fix is_writable in https://github.com/opencart/opencart/pull/15585
+* Fixed: Storage move changes in https://github.com/opencart/opencart/pull/15586
+* Fixed: Set httponly on the session cookie in https://github.com/opencart/opencart/pull/15587
+* Fixed: Check subscription permission in subscription api call in https://github.com/opencart/opencart/pull/15589
+* Fixed: Improved exception and error handlers in https://github.com/opencart/opencart/pull/15590
+* Fixed: Added payment instructions to order mail in https://github.com/opencart/opencart/pull/15591
+* Changed: Cookie changes in https://github.com/opencart/opencart/pull/15594
+* Fixed: Admin: Fixed Design -> Layouts form in https://github.com/opencart/opencart/pull/15596
+* Fixed: More error handler changes in https://github.com/opencart/opencart/pull/15597
+* Fixed: Admin: Fixed reports HTML markup errors in https://github.com/opencart/opencart/pull/15598
+* Fixed: Fix escape bypass on directory in filemanager getList https://github.com/opencart/opencart/pull/15599
+* Fixed: Fix order order email comments and instructions in https://github.com/opencart/opencart/pull/15601
+* Fixed: Fixed order comment during checkout in https://github.com/opencart/opencart/pull/15602
+* Fixed: Admin: Fixed filemanager pagination count in https://github.com/opencart/opencart/pull/15603
+* Fixed: Reject traversal entries in upgrade archive extraction in https://github.com/opencart/opencart/pull/15604
+* Fixed: Match api routes case insensitively in the startup gate in https://github.com/opencart/opencart/pull/15606
+* Fixed: Reject traversal extension codes in installer upload in https://github.com/opencart/opencart/pull/15609
+* Fixed: More checkout fixes in https://github.com/opencart/opencart/pull/15611
+* Fixed: More checkout comment fixes in https://github.com/opencart/opencart/pull/15615
+* Fixed: Honor configured 2FA authorization expiry on 4.x in https://github.com/opencart/opencart/pull/15619
+* Fixed: keep computed status authoritative in cms/comment add in https://github.com/opencart/opencart/pull/15632
+* Fixed: Add $args parameter type to Url::link() docblock in https://github.com/opencart/opencart/pull/15633
 
 ## [v4.1.0.3] (Release date: 24.03.2025)
 

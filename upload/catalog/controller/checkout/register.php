@@ -174,7 +174,7 @@ class Register extends \Opencart\System\Engine\Controller {
 
 		$extension_info = $this->model_setting_extension->getExtensionByCode('captcha', $this->config->get('config_captcha'));
 
-		if ($extension_info && $this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
+		if ($extension_info && $this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('guest', (array)$this->config->get('config_captcha_page'))) {
 			$data['captcha'] = $this->load->controller('extension/' . $extension_info['extension'] . '/captcha/' . $extension_info['code']);
 		} else {
 			$data['captcha'] = '';
@@ -462,7 +462,7 @@ class Register extends \Opencart\System\Engine\Controller {
 			if (!$this->customer->isLogged()) {
 				$extension_info = $this->model_setting_extension->getExtensionByCode('captcha', $this->config->get('config_captcha'));
 
-				if ($extension_info && $this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
+				if ($extension_info && $this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('guest', (array)$this->config->get('config_captcha_page'))) {
 					$captcha = $this->load->controller('extension/' . $extension_info['extension'] . '/captcha/' . $extension_info['code'] . '.validate');
 
 					if ($captcha) {
@@ -540,7 +540,7 @@ class Register extends \Opencart\System\Engine\Controller {
 				// Zone
 				$this->load->model('localisation/zone');
 
-				$zone_info = $this->model_localisation_zone->getZone($post_info['payment_zone_id']);
+				$zone_info = $this->model_localisation_zone->getZone((int)$post_info['payment_zone_id']);
 
 				if ($zone_info) {
 					$zone = $zone_info['name'];
@@ -631,7 +631,7 @@ class Register extends \Opencart\System\Engine\Controller {
 					// Zone
 					$this->load->model('localisation/zone');
 
-					$zone_info = $this->model_localisation_zone->getZone($post_info['shipping_zone_id']);
+					$zone_info = $this->model_localisation_zone->getZone((int)$post_info['shipping_zone_id']);
 
 					if ($zone_info) {
 						$zone = $zone_info['name'];

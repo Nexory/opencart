@@ -68,6 +68,8 @@ class FileManager extends \Opencart\System\Engine\Controller {
 			$filter_name = '';
 		}
 
+		$filter_case = isset($this->request->get['filter_case']) ? (bool)$this->request->get['filter_case'] : true;
+
 		if (isset($this->request->get['page'])) {
 			$page = (int)$this->request->get['page'];
 		} else {
@@ -80,8 +82,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 			'.jpeg',
 			'.png',
 			'.gif',
-			'.webp',
-			'.svg'
+			'.webp'
 		];
 
 		$directories = [];
@@ -91,7 +92,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 		$paths = array_diff(scandir($directory), ['..', '.']);
 
 		foreach ($paths as $value) {
-			if ($filter_name && !str_starts_with($value, $filter_name)) {
+			if ($filter_name && !preg_match('~' . str_replace(['\*', '\?'], ['.*', '.'], preg_quote($filter_name, '~')) . '~' . ($filter_case ? '' : 'i'), $value)) {
 				continue;
 			}
 
@@ -106,7 +107,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 			}
 		}
 
-		$total = count($files);
+		$total = count($files) + count($directories);
 		$limit = 16;
 		$start = ($page - 1) * $limit;
 
@@ -158,7 +159,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 		}
 
 		if (isset($this->request->get['directory'])) {
-			$data['directory'] = urldecode($this->request->get['directory']);
+			$data['directory'] = $this->request->get['directory'];
 		} else {
 			$data['directory'] = '';
 		}
@@ -168,6 +169,8 @@ class FileManager extends \Opencart\System\Engine\Controller {
 		} else {
 			$data['filter_name'] = '';
 		}
+
+		$data['filter_case'] = $filter_case;
 
 		// Parent
 		$url = '';
@@ -205,6 +208,8 @@ class FileManager extends \Opencart\System\Engine\Controller {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
 
+		$url .= '&filter_case=' . (int)$filter_case;
+
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
 		}
@@ -232,6 +237,8 @@ class FileManager extends \Opencart\System\Engine\Controller {
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+
+		$url .= '&filter_case=' . (int)$filter_case;
 
 		if (isset($this->request->get['target'])) {
 			$url .= '&target=' . $this->request->get['target'];
@@ -318,8 +325,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 						'jpeg',
 						'png',
 						'gif',
-						'webp',
-						'svg'
+						'webp'
 					];
 
 					if (!in_array(strtolower(substr($filename, strrpos($filename, '.') + 1)), $allowed)) {
@@ -334,8 +340,7 @@ class FileManager extends \Opencart\System\Engine\Controller {
 						'image/png',
 						'image/x-png',
 						'image/gif',
-						'image/webp',
-						'image/svg+xml'
+						'image/webp'
 					];
 
 					if (!in_array($file['type'], $allowed)) {

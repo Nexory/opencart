@@ -22,8 +22,6 @@ $('#button-shipping-methods').on('click', function() {
                 $(element).button('reset');
             },
             success: function(json) {
-                console.log(json);
-
                 $('#input-shipping-method').removeClass('is-invalid');
                 $('#error-shipping-method').removeClass('d-block');
 
@@ -33,6 +31,16 @@ $('#button-shipping-methods').on('click', function() {
                 }
 
                 if (json['shipping_methods']) {
+                    var element = document.getElementById('modal-shipping');
+
+                    if (element) {
+                        var modal = bootstrap.Modal.getInstance(element);
+
+                        if (modal) {
+                            modal.dispose();
+                        }
+                    }
+
                     $('#modal-shipping').remove();
 
                     html = '<div id="modal-shipping" class="modal">';
@@ -116,8 +124,6 @@ $(document).on('submit', '#form-shipping-method', function(e) {
                 $('#button-shipping-method').button('reset');
             },
             success: function(json) {
-                console.log(json);
-
                 if (json['redirect']) {
                     location = json['redirect'];
                 }

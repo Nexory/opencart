@@ -12,15 +12,17 @@
       <input type="text" name="search" value="{{ filter_name }}" placeholder="{{ entry_search }}" id="input-search" class="form-control"/>
       <button type="button" id="button-search" data-bs-toggle="tooltip" title="{{ button_search }}" class="btn btn-primary"><i class="fa-solid fa-search"></i></button>
     </div>
+      <div class="form-check mt-2">
+        <input type="checkbox" name="match_case" value="1" id="input-match-case" class="form-check-input"{% if filter_case %} checked{% endif %}/>
+        <label class="form-check-label" for="input-match-case">{{ entry_match_case }}</label>
+      </div>
   </div>
 </div>
 <div id="modal-folder" class="row mb-3" style="display: none;">
   <div class="col-sm-12">
     <div class="input-group">
-      <div class="input-group">
-        <input type="text" name="folder" value="" placeholder="{{ entry_folder }}" id="input-folder" class="form-control"/>
-        <button type="button" title="{{ button_folder }}" id="button-create" class="btn btn-primary"><i class="fa-solid fa-plus-circle"></i></button>
-      </div>
+      <input type="text" name="folder" value="" placeholder="{{ entry_folder }}" id="input-folder" class="form-control"/>
+      <button type="button" title="{{ button_folder }}" id="button-create" class="btn btn-primary"><i class="fa-solid fa-plus-circle"></i></button>
     </div>
   </div>
 </div>
@@ -33,7 +35,7 @@
         <a href="{{ directory.href }}" class="directory mb-1"><i class="fa-solid fa-folder fa-5x"></i></a>
       </div>
       <div class="form-check">
-        <label for="input-path-{{ path_row }}" class="form-check-label">{{ directory.name }}</label>
+        <label for="input-path-{{ path_row }}" class="form-check-label text-break">{{ directory.name }}</label>
         <input type="checkbox" name="path[]" value="{{ directory.path }}" id="input-path-{{ path_row }}" class="form-check-input"/>
       </div>
     </div>
@@ -45,7 +47,7 @@
         <a href="{{ image.href }}" class="thumbnail mb-1"><img src="{{ image.thumb }}" alt="{{ image.name }}" title="{{ image.name }}" class="img-fluid"/></a>
       </div>
       <div class="form-check">
-        <label for="input-path-{{ path_row }}" class="form-check-label">{{ image.name }}</label>
+        <label for="input-path-{{ path_row }}" class="form-check-label text-break">{{ image.name }}</label>
         <input type="checkbox" name="path[]" value="{{ image.path }}" id="input-path-{{ path_row }}" class="form-check-input"/>
       </div>
     </div>
